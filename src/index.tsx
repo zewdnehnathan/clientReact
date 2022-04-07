@@ -5,6 +5,7 @@ import App from './app/layout/App';
 import reportWebVitals from './reportWebVitals';
 import ReactDOM from 'react-dom';
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 /*ReactDOM.render(
   <React.StrictMode>
@@ -25,7 +26,9 @@ const container = document.getElementById('root') as HTMLElement;
 const root = ReactDOMClient.createRoot(container);
 root.render(
   <React.StrictMode>
-  <App />
+    <BrowserRouter>
+         <App />
+  </BrowserRouter>
 </React.StrictMode>
  );
 // If you want to start measuring performance in your app, pass a function
