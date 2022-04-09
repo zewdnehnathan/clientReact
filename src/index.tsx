@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
+
 /*ReactDOM.render(
   <React.StrictMode>
     <App />
@@ -21,6 +22,7 @@ function AppWithCallbackAfterRender() {
 
   return <App />
 }
+
 
 const container = document.getElementById('root') as HTMLElement;
 const root = ReactDOMClient.createRoot(container);
