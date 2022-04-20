@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { StoreProvider } from './app/context/StoreContext';
 
 
 /*ReactDOM.render(
@@ -29,7 +30,9 @@ const root = ReactDOMClient.createRoot(container);
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+    <StoreProvider>
          <App />
+  </StoreProvider>
   </BrowserRouter>
 </React.StrictMode>
  );
