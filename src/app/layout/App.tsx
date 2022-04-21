@@ -16,6 +16,7 @@ import { useStoreContext } from "../context/StoreContext";
 import { getCookie } from "../util/util";
 import agent from "../api/agent";
 import LoadingComponent from "./LoadingComponent";
+import CheckoutPage from "../../features/checkout/CheckoutPage";
 
 
 
@@ -66,6 +67,7 @@ useEffect(()=>{
      <Route path='/about' element={<AboutPage />}/>
      <Route path='/contact' element={<ContactPage />}/>
      <Route path='/basket' element={<BasketPage />}/>
+     <Route path='/checkout' element={<CheckoutPage />}/>
      </Routes>
      </Container>
     </ThemeProvider>
