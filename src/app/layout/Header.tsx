@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 
 import Catalog from "../../features/catalog/Catalog";
 import { useStoreContext } from "../context/StoreContext";
+import { useAppSelector } from "../Store/configureStore";
 
 interface Props {
     darkMode: boolean;
@@ -29,7 +30,7 @@ const navStyles = {
 
 
 export default function Header({darkMode,handleThemeChange}: Props){
-    const {basket} = useStoreContext();
+    const {basket} =  useAppSelector(state=>state.basket); //useStoreContext();
     const itemCount = basket?.items.reduce((sum,item)=>sum+item.quantity,0);
 
     return(

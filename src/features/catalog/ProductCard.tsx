@@ -1,25 +1,27 @@
 import { LoadingButton } from "@mui/lab";
 import { Avatar, Button, Card, CardActions, CardContent, CardHeader, CardMedia, ListItem, ListItemAvatar, ListItemText, Typography } from "@mui/material";
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import agent from "../../app/api/agent";
-import { useStoreContext } from "../../app/context/StoreContext";
 import { Product } from "../../app/models/product";
+import { useAppDispatch, useAppSelector } from "../../app/Store/configureStore";
+import { addBasketItemAsync } from "../Basket/basketSlice";
 
 interface Props {
     product:Product
 }
 
 export default function ProductCard({product}:Props){
-   const [loading,setLoading] = useState(false);
-   const {setBasket} = useStoreContext(); 
+  // const [loading,setLoading] = useState(false);
+  const {status} = useAppSelector(state => state.basket)
+  const dispatch = useAppDispatch();
+   // const {setBasket} = useStoreContext(); 
    var BC = "";
 
-   function handleAddItem(productId: number){
+   /*function handleAddItem(productId: number){
      setLoading(true);
      agent.Basket.addItem(productId)
      .then(res => {
-      setBasket(res);
+      dispatch(setBasket(res))
+     // setBasket(res);
       BC = res.buyerId;
       let date = new Date();
       date.setTime(date.getTime()+(24*60*60*1000));
@@ -29,7 +31,7 @@ export default function ProductCard({product}:Props){
      .catch(error => console.log(error))
      .finally(()=> setLoading(false));
 
-   }
+   }*/
 
     return(
     <Card >
@@ -58,7 +60,7 @@ export default function ProductCard({product}:Props){
         </Typography>
       </CardContent>
       <CardActions>
-        <LoadingButton loading={loading} onClick={()=> handleAddItem(product.id)} size="small">Add To Cart</LoadingButton>
+        <LoadingButton loading={status.includes('pendingAddItem'+product.id)} onClick={()=> dispatch(addBasketItemAsync({productId: product.id}))/*handleAddItem(product.id)*/} size="small">Add To Cart</LoadingButton>
         <Button component={Link} to={`/catalog/${product.id}`} size="small">View</Button>
       </CardActions>
     </Card>
